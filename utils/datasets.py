@@ -200,6 +200,12 @@ class LoadImages:
             # Read video
             self.mode = 'video'
             ret_val, img0 = self.cap.read()
+            while ret_val == False:
+                if self.frame > self.frames:
+                    break
+                self.frame += 1
+                ret_val, img0 = self.cap.read()
+
             if not ret_val:
                 self.count += 1
                 self.cap.release()
